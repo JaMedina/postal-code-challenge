@@ -1,0 +1,91 @@
+<html ng-app="wccApp">
+<head>
+<meta charset="utf-8" />
+
+<!-- build:css assets/styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css assets/styles/main.css -->
+<!-- endbuild -->
+
+<title>Wcc PostalCode Challenge</title>
+</head>
+<body ng-controller="MainController">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<ul class="nav navbar-nav nav-pills navbar-right"
+				ng-switch="authenticated">
+				<li ui-sref-active="active"><a href="/"> <span
+						class="glyphicon glyphicon-home"></span> <span>Home</span>
+				</a></li>
+				<li ng-switch-when="false"><a href="#/login"> <span
+						class="glyphicon glyphicon-log-in"></span>&#xA0; <span>Authenticate</span>
+				</a></li>
+				<li ng-switch-when="false"><a href="#/register"> <span
+						class="glyphicon glyphicon-plus-sign"></span>&#xA0; <span>Register</span>
+				</a></li>
+				<li ng-switch-when="true" class="dropdown pointer"><a
+					class="dropdown-toggle" data-toggle="dropdown" href=""> <span>
+							<span class="glyphicon glyphicon-envelope"></span>&#xA0; <span
+							class="hidden-tablet">Postal codes</span> <b class="caret"></b>
+					</span>
+				</a>
+					<ul class="dropdown-menu">
+						<li><a href="#/postalCode"> <span
+								class="glyphicon glyphicon-edit"></span>&nbsp; <span>Edit
+									postal codes</span>
+						</a></li>
+						<li><a href="#/calculateDistance"> <span
+								class="glyphicon glyphicon-plus"></span>&#xA0; <span>Calculate
+									distance</span>
+						</a></li>
+						<li><a href="#/reports"> <span
+								class="glyphicon glyphicon-folder-open"></span>&#xA0; <span>Reports</span>
+						</a></li>
+					</ul></li>
+				<li ng-switch-when="true"><a href="/" ng-click="logout()">
+						<span class="glyphicon glyphicon-log-out"></span>&#xA0; <span>Log
+							out</span>
+				</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+
+
+
+	<div class="container">
+		<div class="well">
+			<div ng-view=""></div>
+		</div>
+	</div>
+
+
+	<!-- build:js scripts/scripts.js -->
+
+	<!-- bower:js -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+	<!-- endbower -->
+
+	<script src="scripts/http-auth-interceptor.js"></script>
+	<script src="scripts/wcc-utils.js"></script>
+	<script src="scripts/wcc.js"></script>
+	<script src="scripts/wcc-constants.js"></script>
+	<script src="scripts/wcc-services.js"></script>
+	<script src="scripts/public/mainController.js"></script>
+	<script src="scripts/public/registerController.js"></script>
+	<script src="scripts/public/loginController.js"></script>
+	<script src="scripts/authenticated/postalCodeController.js"></script>
+	<script src="scripts/authenticated/calculateDistanceController.js"></script>
+	<script src="scripts/authenticated/reportsController.js"></script>
+	<!-- endbuild -->
+</body>
+</html>

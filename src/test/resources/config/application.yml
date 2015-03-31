@@ -1,0 +1,23 @@
+server:
+    port: 10344
+    address: localhost
+
+spring:
+    datasource:
+        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+        url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
+        databaseName:
+        serverName:
+        username:
+        password:
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        openInView: false
+        show_sql: true
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+

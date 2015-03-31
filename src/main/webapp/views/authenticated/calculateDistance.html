@@ -1,0 +1,81 @@
+<div ng-switch="resulOK">
+	<h2>Calculate the distance between two postal codes</h2>
+
+	<form ng-show="!success" name="form" role="form" novalidate
+		ng-submit="calculateDistance()" show-validation>
+		<div class="form-group">
+			<label>Origin</label> <input type="text" class="form-control"
+				name="origin" ng-model="origin" ng-minlength=2 required
+				placeholder="PostalCode Origin">
+			<div ng-show="form.origin.$dirty && form.origin.$invalid">
+				<p class="help-block" ng-show="form.origin.$error.required">The
+					Origin is required.</p>
+				<p class="help-block" ng-show="form.origin.$error.minlength">The
+					Origin is required to be at least 2 character</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Destination</label> <input type="text" class="form-control"
+				name="destination" ng-model="destination" ng-minlength=2 required
+				placeholder="PostalCode Destination">
+			<div ng-show="form.destination.$dirty && form.destination.$invalid">
+				<p class="help-block" ng-show="form.destination.$error.required">The
+					Destination is required.</p>
+				<p class="help-block" ng-show="form.destination.$error.minlength">The
+					Destination is required to be at least 2 character</p>
+			</div>
+		</div>
+
+		<button type="submit" ng-disabled="form.$invalid"
+			class="btn btn-primary">Calculate</button>
+	</form>
+
+	<div ng-switch-when="true">
+		<br />
+		<h3>Result</h3>
+		<br />
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Distance</th>
+					<td class="danger">{{result.distance}}</td>
+				</tr>
+				<tr>
+					<th>Unit</th>
+					<td class="danger">{{result.unit}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<table class="table">
+			<thead>
+				<tr>
+					<th>PostalCode</th>
+					<th>Latitude</th>
+					<th>Longitude</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="success">
+					<td>{{result.origin.postalCode}}</td>
+					<td>{{result.origin.latitude}}</td>
+					<td>{{result.origin.longitude}}</td>
+				</tr>
+				<tr class="info">
+					<td>{{result.destination.postalCode}}</td>
+					<td>{{result.destination.latitude}}</td>
+					<td>{{result.destination.longitude}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<br />
+			<h4>JSON Document</h4>
+			<pre>
+			<code>
+				<br />{{distanceResult}}</code>
+			</pre>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+authentication:
+  oauth:
+    clientid: wccApp
+    secret: wccAppOauthAuthenticationSecret
+    tokenValidityInSeconds: 1800

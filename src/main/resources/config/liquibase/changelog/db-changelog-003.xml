@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+  <!-- Manage the OAuth authentication -->
+  <changeSet id="6" author="Jorge Medina">
+    <createTable tableName="oauth_client_details">
+      <column name="client_id" type="java.sql.Types.VARCHAR(255)">
+        <constraints nullable="false" primaryKey="true" />
+      </column>
+      <column name="resource_ids" type="java.sql.Types.VARCHAR(255)" />
+      <column name="client_secret" type="java.sql.Types.VARCHAR(255)" />
+      <column name="scope" type="java.sql.Types.VARCHAR(255)" />
+      <column name="authorized_grant_types" type="java.sql.Types.VARCHAR(255)" />
+      <column name="web_server_redirect_uri" type="java.sql.Types.VARCHAR(255)" />
+      <column name="authorities" type="java.sql.Types.VARCHAR(255)" />
+      <column name="access_token_validity" type="java.sql.Types.TIMESTAMP" />
+      <column name="refresh_token_validity" type="java.sql.Types.TIMESTAMP" />
+      <column name="additional_information" type="java.sql.Types.VARCHAR(4096)" />
+      <column name="autoapprove" type="java.sql.Types.VARCHAR(4096)" />
+    </createTable>
+
+    <createTable tableName="oauth_client_token">
+      <column name="token_id" type="java.sql.Types.VARCHAR(255)" />
+      <column name="token" type="java.sql.Types.BLOB" />
+      <column name="authentication_id" type="java.sql.Types.VARCHAR(255)" />
+      <column name="user_name" type="java.sql.Types.VARCHAR(255)" />
+      <column name="client_id" type="java.sql.Types.VARCHAR(255)" />
+    </createTable>
+
+    <addForeignKeyConstraint baseColumnNames="user_name" baseTableName="oauth_client_token" constraintName="fk_oauth_client_token_user_name" referencedColumnNames="username"
+      referencedTableName="T_USER" />
+
+    <createTable tableName="oauth_access_token">
+      <column name="token_id" type="java.sql.Types.VARCHAR(255)" />
+      <column name="token" type="java.sql.Types.BLOB" />
+      <column name="authentication_id" type="java.sql.Types.VARCHAR(255)" />
+      <column name="user_name" type="java.sql.Types.VARCHAR(255)" />
+      <column name="client_id" type="java.sql.Types.VARCHAR(255)" />
+      <column name="authentication" type="java.sql.Types.BLOB" />
+      <column name="refresh_token" type="java.sql.Types.VARCHAR(255)" />
+    </createTable>
+
+    <addForeignKeyConstraint baseColumnNames="user_name" baseTableName="oauth_client_token" constraintName="fk_oauth_access_token_user_name" referencedColumnNames="username"
+      referencedTableName="T_USER" />
+
+    <createTable tableName="oauth_refresh_token">
+      <column name="token_id" type="java.sql.Types.VARCHAR(255)" />
+      <column name="token" type="java.sql.Types.BLOB" />
+      <column name="authentication" type="java.sql.Types.BLOB" />
+    </createTable>
+
+    <createTable tableName="oauth_code">
+      <column name="code" type="java.sql.Types.VARCHAR(255)" />
+    </createTable>
+
+    <createTable tableName="oauth_approvals">
+      <column name="userId" type="java.sql.Types.VARCHAR(255)" />
+      <column name="clientId" type="java.sql.Types.VARCHAR(255)" />
+      <column name="scope" type="java.sql.Types.VARCHAR(255)" />
+      <column name="status" type="java.sql.Types.VARCHAR(255)" />
+      <column name="expiresAt" type="java.sql.Types.TIMESTAMP" />
+      <column name="lastModifiedAt" type="java.sql.Types.TIMESTAMP" />
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>

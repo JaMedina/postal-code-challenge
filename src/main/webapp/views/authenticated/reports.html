@@ -1,0 +1,102 @@
+<div>
+	<h2>Postal code report</h2>
+
+	<br />
+	<h4 class="alert alert-success">Longest calculated distance</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Origin</th>
+				<th>Destination</th>
+				<th>Distance</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="longDistance in report.longestDistances">
+				<td>{{longDistance.origin.postalCode}}</td>
+				<td>{{longDistance.destination.postalCode}}</td>
+				<td>{{longDistance.distance}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+		<br />
+	<h4 class="alert alert-success">Shortest calculated distance</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Origin</th>
+				<th>Destination</th>
+				<th>Distance</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="shortDistance in report.shortestDistances">
+				<td>{{shortDistance.origin.postalCode}}</td>
+				<td>{{shortDistance.destination.postalCode}}</td>
+				<td>{{shortDistance.distance}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<h4 class="alert alert-success">Most requested Origins</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>PostalCode</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th># of Requests</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="origin in report.mostRequestedOrigins">
+				<td>{{origin[0].postalCode}}</td>
+				<td>{{origin[0].latitude}}</td>
+				<td>{{origin[0].longitude}}</td>
+				<td>{{origin[1]}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<h4 class="alert alert-success">Most requested Destination</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>PostalCode</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th># of Requests</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="destination in report.mostRequestedDestinations">
+				<td>{{destination[0].postalCode}}</td>
+				<td>{{destination[0].latitude}}</td>
+				<td>{{destination[0].longitude}}</td>
+				<td>{{destination[1]}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<h4 class="alert alert-success">Most requested Pairs</h4>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Origin</th>
+				<th>Destination</th>
+				<th># of Requests</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="pair in report.mostRequestedPairs">
+				<td>{{pair[0].postalCode}}</td>
+				<td>{{pair[1].postalCode}}</td>
+				<td>{{pair[2]}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

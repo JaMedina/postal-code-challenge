@@ -1,0 +1,92 @@
+<div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>Registration</h1>
+
+			<div class="alert alert-success" ng-show="success">
+				<strong>Registration saved!</strong> You can now login into the
+				application .
+			</div>
+
+			<div class="alert alert-danger" ng-show="error">
+				<strong>Registration failed!</strong> Please check your input and
+				try again.
+			</div>
+
+			<div class="alert alert-danger" ng-show="errorUserExists">
+				<strong>Login name already registered!</strong> Please choose
+				another one.
+			</div>
+
+			<div class="alert alert-danger" ng-show="doNotMatch">The
+				password and its confirmation do not match!</div>
+
+			<form ng-show="!success" name="form" role="form" novalidate
+				ng-submit="register()" show-validation>
+
+				<div class="form-group">
+					<label>Username</label> <input type="text" class="form-control"
+						name="username" ng-model="user.username" ng-minlength=1 ng-maxlength=50
+						ng-pattern="/^[a-z0-9]*$/" required>
+					<div ng-show="form.username.$dirty && form.username.$invalid">
+						<p class="help-block" ng-show="form.username.$error.required">Your
+							username is required.</p>
+						<p class="help-block" ng-show="form.username.$error.minlength">Your
+							username is required to be at least 1 character</p>
+						<p class="help-block" ng-show="form.username.$error.maxlength">Your
+							username cannot be longer than 50 characters</p>
+						<p class="help-block" ng-show="form.username.$error.pattern">Your
+							username can only contain lower-case letters and digits</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Name</label> <input type="text" class="form-control"
+						name="name" ng-model="user.name" ng-minlength=1 required>
+					<div ng-show="form.name.$dirty && form.name.$invalid">
+						<p class="help-block" ng-show="form.name.$error.required">Your
+							name is required.</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>New password</label> <input type="password"
+						class="form-control" name="password" ng-model="user.password"
+						ng-minlength=5 ng-maxlength=50 required>
+					<div ng-show="form.password.$dirty && form.password.$invalid">
+						<p class="help-block" ng-show="form.password.$error.required">
+							Your password is required.</p>
+						<p class="help-block" ng-show="form.password.$error.minlength">Your
+							password is required to be at least 5 characters</p>
+						<p class="help-block" ng-show="form.password.$error.maxlength">Your
+							password cannot be longer than 50 characters</p>
+					</div>
+					<password-strength-bar password-to-check="user.password"></password-strength-bar>
+				</div>
+				<div class="form-group">
+					<label>New password confirmation</label> <input type="password"
+						class="form-control" name="confirmPassword"
+						ng-model="user.confirmPassword" ng-minlength=5 ng-maxlength=50
+						required>
+					<div
+						ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
+						<p class="help-block"
+							ng-show="form.confirmPassword.$error.required">Your password
+							confirmation is required.</p>
+						<p class="help-block"
+							ng-show="form.confirmPassword.$error.minlength">Your password
+							confirmation is required to be at least 5 characters</p>
+						<p class="help-block"
+							ng-show="form.confirmPassword.$error.maxlength">Your password
+							confirmation cannot be longer than 50 characters</p>
+					</div>
+				</div>
+
+				<button type="submit" ng-disabled="form.$invalid"
+					class="btn btn-primary">Register</button>
+			</form>
+			<p></p>
+			<div class="alert alert-warning">
+				If you want to <a href="#/login">authenticate</a>
+			</div>
+		</div>
+	</div>
+</div>
