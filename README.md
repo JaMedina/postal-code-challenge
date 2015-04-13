@@ -23,7 +23,7 @@
   The application runs with an in memory H2 database. if yo wish to use a my sql database go to src/main/resources/config, open the file application-dev.yml or application-prod.yml and change the following properties
   
     dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-    url: jdbc:h2:mem:jhipster;DB_CLOSE_DELAY=-1
-    databaseName: jdbc:mysql://<server>:<port>/<schema>
+    url: jdbc:mysql://<server>:<port>/<schema>
+    databaseName: 
     username: <username>
     password: <password>
